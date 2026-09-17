@@ -23,6 +23,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 // Other Libs
+// Permite cargar los modelos 3D y formatos de imagenes
 #include "SOIL2/SOIL2.h"
 #include "stb_image.h"
 
@@ -99,10 +100,13 @@ int main( )
     Shader shader( "Shader/modelLoading.vs", "Shader/modelLoading.frag" );
     
     // Load models
+    // Para cargar el modelo en esta parte
+    // En la carpeta Models se encuentra el modelo 3D y la textura. Carga la ruta y el nombre del objeto
+    Model dog((char*)"Models/RedDog.obj");
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
   
-
+    // Dibujo
     // Game loop
     while (!glfwWindowShouldClose(window))
     {
@@ -128,6 +132,7 @@ int main( )
         // Draw the loaded model
         glm::mat4 model(1);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        dog.Draw(shader); // Dibuja el modelo
         
 
         // Swap the buffers
