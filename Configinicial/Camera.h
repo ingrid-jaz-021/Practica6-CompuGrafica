@@ -20,6 +20,7 @@ enum Camera_Movement
 };
 
 // Default camera values
+// Parámetros de inicialización
 const GLfloat YAW = -90.0f;
 const GLfloat PITCH = 0.0f;
 const GLfloat SPEED = 6.0f;
@@ -31,6 +32,7 @@ class Camera
 {
 public:
 	// Constructor with vectors
+	// Posición de la cámara
 	Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), GLfloat yaw = YAW, GLfloat pitch = PITCH) : front(glm::vec3(0.0f, 0.0f, -1.0f)), movementSpeed(SPEED), mouseSensitivity(SENSITIVTY), zoom(ZOOM)
 	{
 		this->position = position;
@@ -53,6 +55,7 @@ public:
 	// Returns the view matrix calculated using Eular Angles and the LookAt Matrix
 	glm::mat4 GetViewMatrix()
 	{
+		// Se fija para poner donde observa la cámara
 		return glm::lookAt(this->position, this->position + this->front, this->up);
 	}
 
@@ -85,6 +88,7 @@ public:
 	// Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
 	void ProcessMouseMovement(GLfloat xOffset, GLfloat yOffset, GLboolean constrainPitch = true)
 	{
+		// Posición del mouse
 		xOffset *= this->mouseSensitivity;
 		yOffset *= this->mouseSensitivity;
 

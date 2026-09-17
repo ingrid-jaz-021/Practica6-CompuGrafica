@@ -38,6 +38,7 @@ void DoMovement( );
 
 
 // Camera
+// Posición de la cámara
 Camera camera( glm::vec3( 0.0f, 0.0f, 3.0f ) );
 bool keys[1024];
 GLfloat lastX = 400, lastY = 300;
@@ -133,6 +134,12 @@ int main( )
         glm::mat4 model(1);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         dog.Draw(shader); // Dibuja el modelo
+
+        // Agrega otro perrito
+        model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        dog.Draw(shader);
         
 
         // Swap the buffers
