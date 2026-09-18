@@ -104,6 +104,7 @@ int main( )
     // Para cargar el modelo en esta parte
     // En la carpeta Models se encuentra el modelo 3D y la textura. Carga la ruta y el nombre del objeto
     Model dog((char*)"Models/RedDog.obj");
+    Model mariposa((char*)"Models/Butterfly.obj"); // Carga nuevo modelo
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
   
@@ -140,6 +141,14 @@ int main( )
         model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         dog.Draw(shader);
+
+        // Agrega la mariposa
+        glm::mat4 modelMariposa(1); 
+        modelMariposa = glm::translate(modelMariposa, glm::vec3(3.0f, 2.0f, 0.0f));
+        modelMariposa = glm::scale(modelMariposa, glm::vec3(0.5f, 0.5f, 0.5f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelMariposa));
+        mariposa.Draw(shader); // Dibuja la mariposa
+
         
 
         // Swap the buffers
