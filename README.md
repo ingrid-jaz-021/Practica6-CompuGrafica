@@ -1,2 +1,2 @@
-# Practica4-CompuGrafica
-Previo y practica 4: Modelado geométrico
+# Practica6-CompuGrafica
+Previo y practica 6: Carga de modelos
