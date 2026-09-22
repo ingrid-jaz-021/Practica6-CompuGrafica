@@ -1,6 +1,6 @@
-// Previo #6
+// Práctica #6
 // Serrano Cuevas Ingrid Jazmín
-// Fecha de entrega: 18 de septiembre de 2026
+// Fecha de entrega: 26 de septiembre de 2026
 // 319213197
 
 // Std. Includes
@@ -61,7 +61,7 @@ int main( )
     glfwWindowHint( GLFW_RESIZABLE, GL_FALSE );
     
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Previo 6 - Ingrid Serrano", nullptr, nullptr );
+    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Practica 6 - Ingrid Serrano", nullptr, nullptr );
     
     if ( nullptr == window )
     {
@@ -104,7 +104,8 @@ int main( )
     // Para cargar el modelo en esta parte
     // En la carpeta Models se encuentra el modelo 3D y la textura. Carga la ruta y el nombre del objeto
     Model dog((char*)"Models/RedDog.obj");
-    Model mariposa((char*)"Models/Butterfly.obj"); // Carga nuevo modelo
+    Model mesa((char*)"Models/Mesa.obj");
+    //Model mariposa((char*)"Models/Butterfly.obj"); // Carga nuevo modelo - Previo
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
   
@@ -132,22 +133,32 @@ int main( )
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
         // Draw the loaded model
+        // Perrito
         glm::mat4 model(1);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         dog.Draw(shader); // Dibuja el modelo
 
-        // Agrega otro perrito
-        model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
-        dog.Draw(shader);
+        glm::mat4 modelMesa(1); 
+        modelMesa = glm::translate(modelMesa, glm::vec3(0.0f, -1.5f, 0.0f));
+        modelMesa = glm::scale(modelMesa, glm::vec3(3.0f, 3.0f, 3.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelMesa));
+        mesa.Draw(shader);
 
-        // Agrega la mariposa
-        glm::mat4 modelMariposa(1); 
-        modelMariposa = glm::translate(modelMariposa, glm::vec3(3.0f, 2.0f, 0.0f));
-        modelMariposa = glm::scale(modelMariposa, glm::vec3(0.5f, 0.5f, 0.5f));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelMariposa));
-        mariposa.Draw(shader); // Dibuja la mariposa
+
+
+        // Previo 6
+        //// Agrega otro perrito
+        //model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
+        //model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+        //dog.Draw(shader);
+
+        //// Agrega la mariposa
+        //glm::mat4 modelMariposa(1); 
+        //modelMariposa = glm::translate(modelMariposa, glm::vec3(3.0f, 2.0f, 0.0f));
+        //modelMariposa = glm::scale(modelMariposa, glm::vec3(0.5f, 0.5f, 0.5f));
+        //glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelMariposa));
+        //mariposa.Draw(shader); // Dibuja la mariposa
 
         
 
