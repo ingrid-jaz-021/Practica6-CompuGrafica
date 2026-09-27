@@ -109,6 +109,7 @@ int main( )
     Model doctor((char*)"Models/Doctor.obj");
     Model corgi((char*)"Models/Corgi2.obj");
     Model medkit((char*)"Models/MedKit.obj");
+    Model planta((char*)"Models/pot.obj");
     //Model mariposa((char*)"Models/Butterfly.obj"); // Carga nuevo modelo - Previo
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -169,6 +170,13 @@ int main( )
         modelMedKit = glm::scale(modelMedKit, glm::vec3(0.009f, 0.009f, 0.009f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelMedKit));
         medkit.Draw(shader);
+
+        // Planta
+        glm::mat4 modelPlanta(1);
+        modelPlanta = glm::translate(modelPlanta, glm::vec3(-1.5f, -1.8f, 0.0f));
+        modelPlanta = glm::scale(modelPlanta, glm::vec3(0.04f, 0.04f, 0.04f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelPlanta));
+        planta.Draw(shader);
 
 
 
