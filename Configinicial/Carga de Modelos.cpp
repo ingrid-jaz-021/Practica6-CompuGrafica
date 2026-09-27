@@ -107,6 +107,7 @@ int main( )
     Model dog((char*)"Models/RedDog.obj");
     Model mesa((char*)"Models/Mesa.obj");
     Model doctor((char*)"Models/Doctor.obj");
+    Model corgi((char*)"Models/Corgi2.obj");
     //Model mariposa((char*)"Models/Butterfly.obj"); // Carga nuevo modelo - Previo
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -154,6 +155,12 @@ int main( )
         modelDoctor = glm::scale(modelDoctor, glm::vec3(1.5f, 1.5f, 1.5f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelDoctor));
         doctor.Draw(shader);
+
+        // Perro corgi
+        glm::mat4 modelCorgi(1);
+        modelCorgi = glm::translate(modelCorgi, glm::vec3(2.0f, -1.4f, 0.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelCorgi));
+        corgi.Draw(shader);
 
 
 
