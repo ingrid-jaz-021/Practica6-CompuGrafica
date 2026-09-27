@@ -100,11 +100,13 @@ int main( )
     // Setup and compile our shaders
     Shader shader( "Shader/modelLoading.vs", "Shader/modelLoading.frag" );
     
+    // ************** Primer paso *****************
     // Load models
     // Para cargar el modelo en esta parte
     // En la carpeta Models se encuentra el modelo 3D y la textura. Carga la ruta y el nombre del objeto
     Model dog((char*)"Models/RedDog.obj");
     Model mesa((char*)"Models/Mesa.obj");
+    Model doctor((char*)"Models/Doctor.obj");
     //Model mariposa((char*)"Models/Butterfly.obj"); // Carga nuevo modelo - Previo
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -132,17 +134,26 @@ int main( )
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
+        // ************** Segundo paso *****************
         // Draw the loaded model
         // Perrito
         glm::mat4 model(1);
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
         dog.Draw(shader); // Dibuja el modelo
 
+        // Mesa
         glm::mat4 modelMesa(1); 
-        modelMesa = glm::translate(modelMesa, glm::vec3(0.0f, -1.5f, 0.0f));
-        modelMesa = glm::scale(modelMesa, glm::vec3(3.0f, 3.0f, 3.0f));
+        modelMesa = glm::translate(modelMesa, glm::vec3(0.0f, -1.3f, 0.0f));
+        modelMesa = glm::scale(modelMesa, glm::vec3(5.0f, 2.5f, 2.5f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelMesa));
         mesa.Draw(shader);
+
+        // Docotor
+        glm::mat4 modelDoctor(1);
+        modelDoctor = glm::translate(modelDoctor, glm::vec3(-0.6f, -1.8f, -2.5f));
+        modelDoctor = glm::scale(modelDoctor, glm::vec3(2.0f, 2.0f, 2.0f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelDoctor));
+        doctor.Draw(shader);
 
 
 
