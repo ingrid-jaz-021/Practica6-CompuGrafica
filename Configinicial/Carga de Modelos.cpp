@@ -178,8 +178,6 @@ int main( )
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelPlanta));
         planta.Draw(shader);
 
-
-
         // Previo 6
         //// Agrega otro perrito
         //model = glm::translate(model, glm::vec3(3.0f, 0.0f, 0.0f));
