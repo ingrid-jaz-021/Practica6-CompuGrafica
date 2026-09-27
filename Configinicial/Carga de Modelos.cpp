@@ -150,8 +150,8 @@ int main( )
 
         // Docotor
         glm::mat4 modelDoctor(1);
-        modelDoctor = glm::translate(modelDoctor, glm::vec3(-0.6f, -1.8f, -2.5f));
-        modelDoctor = glm::scale(modelDoctor, glm::vec3(2.0f, 2.0f, 2.0f));
+        modelDoctor = glm::translate(modelDoctor, glm::vec3(-0.5f, -1.4f, -1.2f));
+        modelDoctor = glm::scale(modelDoctor, glm::vec3(1.5f, 1.5f, 1.5f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelDoctor));
         doctor.Draw(shader);
 
