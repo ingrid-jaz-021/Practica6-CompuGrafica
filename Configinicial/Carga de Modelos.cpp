@@ -108,6 +108,7 @@ int main( )
     Model mesa((char*)"Models/Mesa.obj");
     Model doctor((char*)"Models/Doctor.obj");
     Model corgi((char*)"Models/Corgi2.obj");
+    Model medkit((char*)"Models/MedKit.obj");
     //Model mariposa((char*)"Models/Butterfly.obj"); // Carga nuevo modelo - Previo
     glm::mat4 projection = glm::perspective( camera.GetZoom( ), ( float )SCREEN_WIDTH/( float )SCREEN_HEIGHT, 0.1f, 100.0f );
     
@@ -161,6 +162,13 @@ int main( )
         modelCorgi = glm::translate(modelCorgi, glm::vec3(2.0f, -1.4f, 0.0f));
         glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelCorgi));
         corgi.Draw(shader);
+
+        // Botiquín primero auxilios
+        glm::mat4 modelMedKit(1);
+        modelMedKit = glm::translate(modelMedKit, glm::vec3(0.5f, -0.4f, 0.0f));
+        modelMedKit = glm::scale(modelMedKit, glm::vec3(0.009f, 0.009f, 0.009f));
+        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(modelMedKit));
+        medkit.Draw(shader);
 
 
 
